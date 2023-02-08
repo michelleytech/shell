@@ -11,6 +11,14 @@
 # Example: gitpull.sh
 # Example: gitpull.sh .
 
+# if -h or --help is given, print the usage
+if [ "$1" = "-h" ] || [ "$1" = "--help" ]; then
+    echo "Usage: gitpull.sh [path]"
+    echo "Example: gitpull.sh /home/admin/repos"
+    echo "Example: gitpull.sh"
+    echo "Example: gitpull.sh ."
+    exit 0
+fi
 
 # if no arguments are given, use the current directory
 if [ -z "$1" ]; then
@@ -30,7 +38,7 @@ repos=$(find . -name .git -type d -prune)
 # loop through the repos
 for repo in $repos; do
     # debug output
-    #echo "Pulling changes from $repo"
+    echo "Pulling changes from $repo"
 
     # go to the repo
     cd $repo/..
